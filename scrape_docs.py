@@ -1,11 +1,9 @@
 import os
-import re
 import json
 import time
 import requests
 import sys
 import io
-from markdownify import markdownify as md
 
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 
@@ -41,7 +39,7 @@ def process_nested_params(node_list, level=0, is_input=True):
                 if 'en_US' in d:
                     desc = d['en_US']
                     break
-        except:
+        except Exception:
             desc = desc_raw
             
         # Clean up description
@@ -157,7 +155,7 @@ def generate_api_markdown():
                 except Exception as e:
                     print(f"  [!] Failed fetching {path}: {e}")
                     
-    print(f"[✓] Finished generating API Markdown!")
+    print("[✓] Finished generating API Markdown!")
 
 if __name__ == "__main__":
     generate_api_markdown()
